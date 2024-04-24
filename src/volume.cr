@@ -387,14 +387,14 @@ module GlusterCLI
     # :nodoc:
     def _status
       volumes = Volume.update_brick_status([info], Volume.brick_status(@cli, @name))
-      volumes = Volume.update_volume_utilization(volumes)
+      #volumes = Volume.update_volume_utilization(volumes)
       Volume.update_volume_health(volumes)[0]
     end
 
     # :nodoc:
     def self.all_status(cli)
       volumes = Volume.update_brick_status(Volume.list(cli), Volume.brick_status(cli))
-      volumes = Volume.update_volume_utilization(volumes)
+      #volumes = Volume.update_volume_utilization(volumes)
       Volume.update_volume_health(volumes)
     end
 
