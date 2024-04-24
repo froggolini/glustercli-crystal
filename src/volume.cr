@@ -13,6 +13,8 @@ module GlusterCLI
 
         # Divide the bricks list as subvolumes
         subvol_bricks = [] of Array(Brick)
+        puts subvol_bricks
+        puts "hello!"
         volume.bricks.each_slice(volume.subvol_size.to_i) do |grp|
           subvol_bricks << grp
         end
