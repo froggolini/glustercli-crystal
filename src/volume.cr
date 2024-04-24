@@ -346,26 +346,26 @@ module GlusterCLI
 
           puts "hello subvol util"
           # Subvol Size = Sum of size of Data bricks
-          if subvol.type == TYPE_DISPERSE
-            subvol.size_used = subvol.size_used * (
-              subvol.disperse_count - subvol.disperse_redundancy_count
-            )
+          # if subvol.type == TYPE_DISPERSE
+          #   subvol.size_used = subvol.size_used * (
+          #     subvol.disperse_count - subvol.disperse_redundancy_count
+          #   )
 
-            subvol.size_total = subvol.size_total * (
-              subvol.disperse_count - subvol.disperse_redundancy_count
-            )
+          #   subvol.size_total = subvol.size_total * (
+          #     subvol.disperse_count - subvol.disperse_redundancy_count
+          #   )
 
-            subvol.inodes_used = subvol.inodes_used * (
-              subvol.disperse_count - subvol.disperse_redundancy_count
-            )
+          #   subvol.inodes_used = subvol.inodes_used * (
+          #     subvol.disperse_count - subvol.disperse_redundancy_count
+          #   )
 
-            subvol.inodes_total = subvol.inodes_total * (
-              subvol.disperse_count - subvol.disperse_redundancy_count
-            )
-          end
+          #   subvol.inodes_total = subvol.inodes_total * (
+          #     subvol.disperse_count - subvol.disperse_redundancy_count
+          #   )
+          # end
 
-          subvol.size_free = subvol.size_total - subvol.size_used
-          subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
+          # subvol.size_free = subvol.size_total - subvol.size_used
+          # subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
 
           puts "hello subvol atas util"
           # Aggregated volume utilization
