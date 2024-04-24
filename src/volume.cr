@@ -74,6 +74,7 @@ module GlusterCLI
           end
         end
         volume.distribute_count = (volume.brick_count / volume.subvol_size).to_i
+        puts "parseinfo!"
 
         brks = vol.xpath_nodes(".//brick")
         brks.each do |brk|
@@ -83,6 +84,7 @@ module GlusterCLI
             when "name"
               parts = bele.content.strip.split(":")
               brick.node.hostname = parts[0...-1].join(":")
+              puts "brick!"
               brick.path = parts[-1]
             when "hostUuid"
               brick.node.id = bele.content.strip
@@ -134,6 +136,7 @@ module GlusterCLI
       raise CommandException.new(-1, "Invalid Volume name") if vols.size == 0
 
       vols[0]
+      puts "kelar info!"
     end
 
     # :nodoc:
@@ -147,7 +150,8 @@ module GlusterCLI
 
       document = XML.parse(resp)
 
-      group_subvols(parse_info(document))
+      group_subvols(parse_info(document))\
+      puts "kelar list!"
     end
 
     # :nodoc:
@@ -201,6 +205,7 @@ module GlusterCLI
         brick.inodes_used = brick.inodes_total - brick.inodes_free
 
         brick
+        puts "kelar brick status!"
       end
     end
 
@@ -388,6 +393,7 @@ module GlusterCLI
 
     # :nodoc:
     def self.all_status(cli)
+      puts "all status!"
       volumes = Volume.update_brick_status(Volume.list(cli), Volume.brick_status(cli))
       volumes = Volume.update_volume_utilization(volumes)
       Volume.update_volume_health(volumes)
