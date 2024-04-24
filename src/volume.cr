@@ -274,6 +274,7 @@ module GlusterCLI
     # :nodoc:
     def self.update_volume_health(volumes)
       # Update Volume health based on subvolume health
+      puts "hello3"
       volumes.map do |volume|
         if volume.state == STATE_STARTED
           volume.health = HEALTH_UP
@@ -282,7 +283,7 @@ module GlusterCLI
           volume.subvols = volume.subvols.map do |subvol|
             # Update Subvolume health based on bricks health
             subvol = update_subvol_health(subvol)
-
+            puts "hello4"
             # One subvol down means the Volume is degraded
             if subvol.health == HEALTH_DOWN
               volume.health = HEALTH_DEGRADED
