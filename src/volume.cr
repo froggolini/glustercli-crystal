@@ -150,7 +150,7 @@ module GlusterCLI
 
       document = XML.parse(resp)
 
-      group_subvols(parse_info(document))\
+      group_subvols(parse_info(document))
       puts "kelar list!"
     end
 
