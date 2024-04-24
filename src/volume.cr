@@ -344,6 +344,7 @@ module GlusterCLI
             end
           end
 
+          puts "hello subvol util"
           # Subvol Size = Sum of size of Data bricks
           if subvol.type == TYPE_DISPERSE
             subvol.size_used = subvol.size_used * (
@@ -366,6 +367,7 @@ module GlusterCLI
           subvol.size_free = subvol.size_total - subvol.size_used
           subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
 
+          puts "hello subvol atas util"
           # Aggregated volume utilization
           volume.size_total += subvol.size_total
           volume.size_used += subvol.size_used
@@ -373,6 +375,7 @@ module GlusterCLI
           volume.inodes_total += subvol.inodes_total
           volume.inodes_used += subvol.inodes_used
           volume.inodes_free = volume.inodes_total - volume.inodes_used
+          puts "hello subvol bawh util"
 
           subvol
         end
