@@ -246,7 +246,6 @@ module GlusterCLI
 
         volume
       end
-      puts "hello2"
     end
 
     # :nodoc:
@@ -315,6 +314,7 @@ module GlusterCLI
     # TODO: Fix and remove this warning
     # ameba:disable Metrics/CyclomaticComplexity
     def self.update_volume_utilization(volumes)
+      puts "hello2"
       volumes.map do |volume|
         volume.subvols = volume.subvols.map do |subvol|
           subvol.size_used = 0
