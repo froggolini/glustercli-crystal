@@ -84,7 +84,6 @@ module GlusterCLI
             when "name"
               parts = bele.content.strip.split(":")
               brick.node.hostname = parts[0...-1].join(":")
-              puts "brick!"
               brick.path = parts[-1]
             when "hostUuid"
               brick.node.id = bele.content.strip
@@ -205,7 +204,6 @@ module GlusterCLI
         brick.inodes_used = brick.inodes_total - brick.inodes_free
 
         brick
-        puts "kelar brick status!"
       end
     end
 
