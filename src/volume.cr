@@ -213,6 +213,9 @@ module GlusterCLI
         tmp_brick_status["#{brick.node.hostname}:#{brick.path}"] = brick
       end
 
+      puts tmp_brick_status
+      puts "hello"
+
       volumes.map do |volume|
         volume.subvols = volume.subvols.map do |subvol|
           subvol.bricks = subvol.bricks.map do |brick|
