@@ -14,7 +14,7 @@ module GlusterCLI
   TYPE_DISPERSE  = "Disperse"
 
   class CommandException < Exception
-    def initialize(@ret : Int128, @error : String)
+    def initialize(@ret : Int32, @error : String)
       super("[#{ret}] #{error}")
     end
   end
