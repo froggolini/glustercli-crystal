@@ -345,8 +345,8 @@ module GlusterCLI
           end
 
           puts "hello subvol util"
-          Subvol Size = Sum of size of Data bricks
-          puts "hello subvol util2"
+
+          #Subvol Size = Sum of size of Data bricks
           if subvol.type == TYPE_DISPERSE
             subvol.size_used = subvol.size_used * (
               subvol.disperse_count - subvol.disperse_redundancy_count
