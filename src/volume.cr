@@ -345,27 +345,29 @@ module GlusterCLI
           end
 
           puts "hello subvol util"
-          # Subvol Size = Sum of size of Data bricks
-          # if subvol.type == TYPE_DISPERSE
-          #   subvol.size_used = subvol.size_used * (
-          #     subvol.disperse_count - subvol.disperse_redundancy_count
-          #   )
+          Subvol Size = Sum of size of Data bricks
+          puts "hello subvol util2"
+          if subvol.type == TYPE_DISPERSE
+            subvol.size_used = subvol.size_used * (
+              subvol.disperse_count - subvol.disperse_redundancy_count
+            )
+            puts "masuk type disperse"
+            subvol.size_total = subvol.size_total * (
+              subvol.disperse_count - subvol.disperse_redundancy_count
+            )
 
-          #   subvol.size_total = subvol.size_total * (
-          #     subvol.disperse_count - subvol.disperse_redundancy_count
-          #   )
+            subvol.inodes_used = subvol.inodes_used * (
+              subvol.disperse_count - subvol.disperse_redundancy_count
+            )
 
-          #   subvol.inodes_used = subvol.inodes_used * (
-          #     subvol.disperse_count - subvol.disperse_redundancy_count
-          #   )
+            subvol.inodes_total = subvol.inodes_total * (
+              subvol.disperse_count - subvol.disperse_redundancy_count
+            )
+          end
 
-          #   subvol.inodes_total = subvol.inodes_total * (
-          #     subvol.disperse_count - subvol.disperse_redundancy_count
-          #   )
-          # end
-
-          # subvol.size_free = subvol.size_total - subvol.size_used
-          # subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
+          puts "hitung size"
+          subvol.size_free = subvol.size_total - subvol.size_used
+          subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
 
           puts "hello subvol atas util"
           # Aggregated volume utilization
@@ -387,14 +389,14 @@ module GlusterCLI
     # :nodoc:
     def _status
       volumes = Volume.update_brick_status([info], Volume.brick_status(@cli, @name))
-      #volumes = Volume.update_volume_utilization(volumes)
+      volumes = Volume.update_volume_utilization(volumes)
       Volume.update_volume_health(volumes)[0]
     end
 
     # :nodoc:
     def self.all_status(cli)
       volumes = Volume.update_brick_status(Volume.list(cli), Volume.brick_status(cli))
-      #volumes = Volume.update_volume_utilization(volumes)
+      volumes = Volume.update_volume_utilization(volumes)
       Volume.update_volume_health(volumes)
     end
 
