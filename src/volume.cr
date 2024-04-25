@@ -367,7 +367,11 @@ module GlusterCLI
 
           puts "hitung size"
           subvol.size_free = subvol.size_total - subvol.size_used
+          puts "hitung size 1"
+          puts subvol.size_free
           subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
+          puts "hitung size 2"
+          puts subvol.inodes_free
 
           puts "hello subvol atas util"
           # Aggregated volume utilization
