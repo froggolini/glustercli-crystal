@@ -327,7 +327,11 @@ module GlusterCLI
           subvol.bricks.each do |brick|
             next if brick.type == "Arbiter"
 
+            puts "masuk subvol arbiter"
             subvol.size_used = brick.size_used if brick.size_used >= subvol.size_used
+            puts subvol.size_used
+            puts brick.size_used
+            puts "nitip"
 
             if subvol.size_total == 0 ||
                (brick.size_total <= subvol.size_total &&
