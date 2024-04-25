@@ -13,7 +13,6 @@ puts cli.list_peers
 
 # Local Metrics
 #puts cli.local_metrics.to_json
-#puts cli.list_volumes(status: true)
-
+puts cli.list_volumes(status: true)
 # Volume info with status info
-puts cli.volume("portal-data").info(status: true)
+#puts cli.volume("portal-data").info(status: true)
