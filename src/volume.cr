@@ -177,13 +177,13 @@ module GlusterCLI
           when "pid"
             brick.pid = ele.content.strip.to_i
           when "sizeTotal"
-            brick.size_total = ele.content.strip.to_u64
+            brick.size_total = ele.content.strip.to_i64
           when "sizeFree"
-            brick.size_free = ele.content.strip.to_u64
+            brick.size_free = ele.content.strip.to_i64
           when "inodesTotal"
-            brick.inodes_total = ele.content.strip.to_u64
+            brick.inodes_total = ele.content.strip.to_i64
           when "inodesFree"
-            brick.inodes_free = ele.content.strip.to_u64
+            brick.inodes_free = ele.content.strip.to_i64
           when "device"
             brick.device = ele.content.strip
           when "blockSize"
@@ -212,8 +212,6 @@ module GlusterCLI
       bricks_status.each do |brick|
         tmp_brick_status["#{brick.node.hostname}:#{brick.path}"] = brick
       end
-
-      puts "hello"
 
       volumes.map do |volume|
         volume.subvols = volume.subvols.map do |subvol|
