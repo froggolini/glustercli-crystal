@@ -272,7 +272,7 @@ module GlusterCLI
     # :nodoc:
     def self.update_volume_health(volumes)
       # Update Volume health based on subvolume health
-      puts "hello3"
+
       volumes.map do |volume|
         if volume.state == STATE_STARTED
           volume.health = HEALTH_UP
@@ -281,7 +281,7 @@ module GlusterCLI
           volume.subvols = volume.subvols.map do |subvol|
             # Update Subvolume health based on bricks health
             subvol = update_subvol_health(subvol)
-            puts "hello4"
+
             # One subvol down means the Volume is degraded
             if subvol.health == HEALTH_DOWN
               volume.health = HEALTH_DEGRADED
@@ -313,7 +313,7 @@ module GlusterCLI
     # TODO: Fix and remove this warning
     # ameba:disable Metrics/CyclomaticComplexity
     def self.update_volume_utilization(volumes)
-      puts "hello2"
+
       volumes.map do |volume|
         volume.subvols = volume.subvols.map do |subvol|
           subvol.size_used = 0
@@ -325,12 +325,7 @@ module GlusterCLI
           subvol.bricks.each do |brick|
             next if brick.type == "Arbiter"
 
-            puts "masuk subvol arbiter"
             subvol.size_used = brick.size_used if brick.size_used >= subvol.size_used
-            puts subvol.size_used
-            puts brick.size_used
-            puts "nitip"
-
             if subvol.size_total == 0 ||
                (brick.size_total <= subvol.size_total &&
                brick.size_total > 0)
@@ -346,14 +341,12 @@ module GlusterCLI
             end
           end
 
-          puts "hello subvol util"
-
           #Subvol Size = Sum of size of Data bricks
           if subvol.type == TYPE_DISPERSE
             subvol.size_used = subvol.size_used * (
               subvol.disperse_count - subvol.disperse_redundancy_count
             )
-            puts "masuk type disperse"
+
             subvol.size_total = subvol.size_total * (
               subvol.disperse_count - subvol.disperse_redundancy_count
             )
@@ -367,18 +360,9 @@ module GlusterCLI
             )
           end
 
-          puts "hitung size"
-          puts subvol.size_total
-          puts subvol.size_used
-          puts "hitung size+"
           subvol.size_free = subvol.size_total - subvol.size_used
-          puts "hitung size 1"
-          puts subvol.size_free
           subvol.inodes_free = subvol.inodes_total - subvol.inodes_used
-          puts "hitung size 2"
-          puts subvol.inodes_free
 
-          puts "hello subvol atas util"
           # Aggregated volume utilization
           volume.size_total += subvol.size_total
           volume.size_used += subvol.size_used
@@ -386,7 +370,6 @@ module GlusterCLI
           volume.inodes_total += subvol.inodes_total
           volume.inodes_used += subvol.inodes_used
           volume.inodes_free = volume.inodes_total - volume.inodes_used
-          puts "hello subvol bawh util"
 
           subvol
         end
