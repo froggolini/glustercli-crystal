@@ -366,6 +366,9 @@ module GlusterCLI
           end
 
           puts "hitung size"
+          puts subvol.size_total
+          puts subvol.size_used
+          puts "hitung size+"
           subvol.size_free = subvol.size_total - subvol.size_used
           puts "hitung size 1"
           puts subvol.size_free
